@@ -24,10 +24,12 @@
       --ink-secondary: #a1a1aa;
       --ink-muted: #71717a;
       --accent-crimson: #e6192e;
+      --accent-crimson-hover: #c51426;
       --accent-crimson-dark: #3a0b12;
       --accent-emerald: #22c55e;
       --accent-emerald-bg: #072915;
       --accent-gold: #f59e0b;
+      --warning-bg: #2e2008;
       --radius-sm: 4px;
       --radius-md: 6px;
     }
@@ -38,6 +40,14 @@
       color: var(--ink-primary);
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .container {
@@ -45,6 +55,22 @@
       max-width: 1240px;
       margin: 0 auto;
       padding: 0 24px;
+    }
+
+    .page-container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 32px auto 64px;
+      padding: 0 24px;
+      flex-grow: 1;
+    }
+
+    .page-container.narrow {
+      max-width: 820px;
+    }
+
+    .hidden {
+      display: none !important;
     }
 
     /* Top Announcement Bar */
@@ -55,8 +81,97 @@
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      padding: 7px 0;
+      padding: 7px 12px;
       text-align: center;
+    }
+
+    /* Top Navigation */
+    .topbar {
+      background-color: var(--bg-graphite);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .topbar-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-brand {
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: var(--ink-primary);
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .topbar-brand span {
+      color: var(--accent-crimson);
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      background: transparent;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link:hover {
+      background-color: var(--bg-studio);
+      color: var(--ink-primary);
+    }
+
+    .nav-link.active {
+      background-color: var(--bg-card);
+      border-color: var(--border-strong);
+      color: var(--ink-primary);
+    }
+
+    .nav-link.sim-nav {
+      border-color: rgba(230, 25, 46, 0.45);
+      color: #fca5a5;
+    }
+
+    .cart-badge {
+      background-color: var(--accent-crimson);
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Header */
@@ -145,6 +260,34 @@
       height: 7px;
       background-color: var(--accent-emerald);
       border-radius: 50%;
+    }
+
+    /* Compact Page Header */
+    .page-hero {
+      background-color: var(--bg-graphite);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .page-hero .hero-kicker {
+      margin-bottom: 6px;
+    }
+
+    .page-hero h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .page-hero p {
+      font-size: 0.9rem;
+      color: var(--ink-secondary);
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     /* Hero Banner */
@@ -479,7 +622,478 @@
       color: var(--accent-gold);
     }
 
-    /* Comparison Table */
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-crimson);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-crimson-hover);
+    }
+
+    .btn-approve {
+      background-color: var(--accent-emerald);
+      color: #052e16;
+    }
+
+    .btn-approve:hover {
+      background-color: #16a34a;
+      color: #ffffff;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border-color: var(--border-strong);
+      color: var(--ink-primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--bg-studio);
+      border-color: #52525b;
+    }
+
+    .btn-danger-outline {
+      background-color: transparent;
+      border-color: #7f1d1d;
+      color: #fca5a5;
+    }
+
+    .btn-danger-outline:hover {
+      background-color: var(--accent-crimson-dark);
+    }
+
+    .btn-sm {
+      padding: 6px 11px;
+      font-size: 0.78rem;
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    /* Panels */
+    .panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .panel-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Two-column layouts */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Cart List */
+    .cart-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      align-items: center;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .cart-item:first-child {
+      padding-top: 0;
+    }
+
+    .cart-thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-studio);
+    }
+
+    .cart-item-info h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .cart-item-meta {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .cart-item-unit-price {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--ink-secondary);
+    }
+
+    .cart-item-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .qty-control {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background-color: var(--bg-studio);
+    }
+
+    .qty-btn {
+      width: 30px;
+      height: 30px;
+      border: none;
+      background-color: var(--bg-studio);
+      color: var(--ink-primary);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .qty-btn:hover {
+      background-color: var(--border-subtle);
+    }
+
+    .qty-input {
+      width: 44px;
+      height: 30px;
+      border: none;
+      border-left: 1px solid var(--border-strong);
+      border-right: 1px solid var(--border-strong);
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      font-family: inherit;
+      background-color: var(--bg-carbon);
+      color: var(--ink-primary);
+    }
+
+    .cart-item-subtotal {
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    @media (max-width: 600px) {
+      .cart-item {
+        grid-template-columns: 64px 1fr;
+      }
+      .cart-thumb {
+        width: 64px;
+        height: 64px;
+      }
+      .cart-item-actions {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    /* Summary rows */
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      margin-bottom: 10px;
+      color: var(--ink-secondary);
+    }
+
+    .summary-row strong {
+      color: var(--ink-primary);
+    }
+
+    .summary-divider {
+      border: none;
+      border-top: 1px solid var(--border-subtle);
+      margin: 14px 0;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    /* Forms */
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--ink-secondary);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.88rem;
+      color: var(--ink-primary);
+      background-color: var(--bg-carbon);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-crimson);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .payment-option {
+      border: 1.5px solid var(--accent-crimson);
+      background-color: var(--bg-studio);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .payment-option-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--ink-primary);
+    }
+
+    .payment-option-desc {
+      font-size: 0.8rem;
+      color: var(--ink-secondary);
+    }
+
+    /* Status Badges */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .status-pending {
+      background-color: var(--warning-bg);
+      color: var(--accent-gold);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .status-paid {
+      background-color: var(--accent-emerald-bg);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+
+    .status-rejected {
+      background-color: var(--accent-crimson-dark);
+      color: #fca5a5;
+      border: 1px solid rgba(230, 25, 46, 0.45);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: currentColor;
+      animation: pulse 1.4s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.8); }
+    }
+
+    /* QRIS Payment Box */
+    .qris-box {
+      text-align: center;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .qris-frame {
+      background-color: #ffffff;
+      color: #18181b;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin: 14px auto;
+      display: inline-block;
+    }
+
+    .qris-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e4e4e7;
+      font-size: 0.8rem;
+      color: #18181b;
+      font-weight: 700;
+    }
+
+    .qris-logo {
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      font-size: 1rem;
+      color: #18181b;
+    }
+
+    .qris-nmid {
+      font-size: 0.72rem;
+      color: #52525b;
+      margin-top: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .qris-amount {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 6px 0;
+    }
+
+    .realtime-banner {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      text-align: left;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg-studio);
+      color: var(--ink-secondary);
+    }
+
+    .realtime-banner strong {
+      color: var(--ink-primary);
+    }
+
+    .realtime-banner.paid {
+      background-color: var(--accent-emerald-bg);
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #bbf7d0;
+    }
+
+    .realtime-banner.paid strong {
+      color: var(--accent-emerald);
+    }
+
+    .realtime-banner.rejected {
+      background-color: var(--accent-crimson-dark);
+      border-color: rgba(230, 25, 46, 0.5);
+      color: #fecaca;
+    }
+
+    /* Simulator cards */
+    .sim-section-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      margin: 20px 0 10px;
+    }
+
+    .sim-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tx-card {
+      background-color: var(--bg-studio);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tx-card.highlight {
+      border-color: var(--accent-crimson);
+      box-shadow: 0 0 0 1px var(--accent-crimson);
+    }
+
+    /* Comparison & Data Tables */
     .spec-table-section {
       background-color: var(--bg-card);
       border: 1px solid var(--border-subtle);
@@ -537,12 +1151,54 @@
       text-transform: uppercase;
     }
 
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+    }
+
+    .empty-state h3 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+
+    .empty-state p {
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      margin-bottom: 18px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--bg-studio);
+      border: 1px solid var(--accent-crimson);
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 100;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* Footer */
     .site-footer {
       background-color: var(--bg-graphite);
       border-top: 1px solid var(--border-subtle);
       padding: 48px 0 28px;
-      margin-top: 24px;
+      margin-top: auto;
     }
 
     .footer-grid {
@@ -615,6 +1271,29 @@
         grid-template-columns: 1fr;
       }
     }
+
+    @media print {
+      .top-bar, .topbar, .no-print, .site-footer {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff;
+        color: #000000;
+      }
+      .panel {
+        background-color: #ffffff;
+        border: none;
+        color: #000000;
+        padding: 0;
+      }
+      th, td {
+        color: #000000;
+        border-color: #cccccc;
+      }
+      th {
+        background-color: #f4f4f5;
+      }
+    }
   </style>
 </head>
 <body>
@@ -624,130 +1303,219 @@
     KATALOG RESMI FINGERLAB INDONESIA &bull; PENGIRIMAN SETIAP HARI DARI JAKARTA PUSAT &bull; GARANSI RESMI 30 HARI
   </div>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">FL</div>
+  <!-- Navigation Bar -->
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-brand" onclick="FLApp.navigate('katalog')">
+        FINGERLAB<span>.ID</span>
+      </div>
+      <div class="topbar-nav">
+        <button type="button" class="nav-link active" data-nav="katalog" onclick="FLApp.navigate('katalog')">Katalog</button>
+        <button type="button" class="nav-link" data-nav="cart" onclick="FLApp.navigate('cart')">
+          Keranjang <span class="cart-badge" id="nav-cart-count">0</span>
+        </button>
+        <button type="button" class="nav-link" data-nav="history" onclick="FLApp.navigate('history')">Riwayat Transaksi</button>
+        <button type="button" class="nav-link sim-nav" data-nav="simulator" onclick="FLApp.navigate('simulator')">Simulator QRIS</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== VIEW: KATALOG ==================== -->
+  <div id="view-katalog">
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">FL</div>
+          <div>
+            <h1 class="brand-title">FINGERLAB<span>.ID</span></h1>
+            <p class="brand-sub">Esports Mobile Touch Peripherals</p>
+          </div>
+        </div>
+
+        <div class="header-meta">
+          <span>V4 Flagship &bull; V2 Edition &bull; Silver Fiber &bull; Pro Pack</span>
+          <div class="official-badge">
+            <span class="official-dot"></span>
+            Official Store Catalog
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero-banner">
+      <div class="container hero-grid">
         <div>
-          <h1 class="brand-title">FINGERLAB<span>.ID</span></h1>
-          <p class="brand-sub">Esports Mobile Touch Peripherals</p>
-        </div>
-      </div>
-
-      <div class="header-meta">
-        <span>V4 Flagship &bull; V2 Edition &bull; Silver Fiber &bull; Pro Pack</span>
-        <div class="official-badge">
-          <span class="official-dot"></span>
-          Official Store Catalog
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero Banner -->
-  <section class="hero-banner">
-    <div class="container hero-grid">
-      <div>
-        <span class="hero-kicker">Katalog Produk 2025 &mdash; Competitive Gear</span>
-        <h2 class="hero-heading">Presisi Maksimal.<br>Zero Sweat. Siap Turnamen.</h2>
-        <p class="hero-text">
-          Sarung jempol gaming berstandar turnamen dengan rajutan serat konduktif 18-jarum. Mengurangi gesekan layar, mencegah ghost touch, dan menjaga akurasi bidikan tetap konsisten.
-        </p>
-        <div class="hero-highlights">
-          <div class="highlight-item">
-            <strong>0.26 mm</strong>
-            <span>Ketebalan Ultra-Tipis</span>
-          </div>
-          <div class="highlight-item">
-            <strong>24-Needle</strong>
-            <span>Kerapatan Rajutan</span>
-          </div>
-          <div class="highlight-item">
-            <strong>30 Hari</strong>
-            <span>Garansi Jahitan</span>
+          <span class="hero-kicker">Katalog Produk 2025 &mdash; Competitive Gear</span>
+          <h2 class="hero-heading">Presisi Maksimal.<br>Zero Sweat. Siap Turnamen.</h2>
+          <p class="hero-text">
+            Sarung jempol gaming berstandar turnamen dengan rajutan serat konduktif 18-jarum. Mengurangi gesekan layar, mencegah ghost touch, dan menjaga akurasi bidikan tetap konsisten.
+          </p>
+          <div class="hero-highlights">
+            <div class="highlight-item">
+              <strong>0.26 mm</strong>
+              <span>Ketebalan Ultra-Tipis</span>
+            </div>
+            <div class="highlight-item">
+              <strong>24-Needle</strong>
+              <span>Kerapatan Rajutan</span>
+            </div>
+            <div class="highlight-item">
+              <strong>30 Hari</strong>
+              <span>Garansi Jahitan</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="hero-showcase">
-        <div class="hero-showcase-imgs">
-          <img src="Sarung Jmepol Website/sarjem v4 galaxy.jpg" alt="Sarung Jempol Unggulan 1" onerror="handleImgFallback(this, 'sarjem v4 galaxy.jpg')">
-          <img src="Sarung Jmepol Website/sarjem v4 emas.jpg" alt="Sarung Jempol Unggulan 2" onerror="handleImgFallback(this, 'sarjem v4 emas.jpg')">
+        <div class="hero-showcase">
+          <div class="hero-showcase-imgs">
+            <img src="Sarung Jmepol Website/sarjem v4 galaxy.jpg" alt="Sarung Jempol Unggulan 1" onerror="handleImgFallback(this, 'sarjem v4 galaxy.jpg')">
+            <img src="Sarung Jmepol Website/sarjem v4 emas.jpg" alt="Sarung Jempol Unggulan 2" onerror="handleImgFallback(this, 'sarjem v4 emas.jpg')">
+          </div>
+          <span class="showcase-caption">Koleksi Unggulan &mdash; Seri V4 Flagship &amp; Turnamen</span>
         </div>
-        <span class="showcase-caption">Koleksi Unggulan &mdash; Seri V4 Flagship &amp; Turnamen</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Catalog -->
-  <main class="container main-section">
-    <div class="catalog-toolbar">
-      <div>
-        <h2 class="section-title">Katalog Produk</h2>
-        <p class="section-desc">Daftar lengkap 32 varian sarung jempol gaming beserta spesifikasi teknis dan harga resmi.</p>
-      </div>
-      <div class="catalog-meta" id="catalog-count">Menampilkan 32 Produk</div>
-    </div>
-
-    <section class="product-grid" id="product-grid" aria-label="Daftar Produk Sarung Jempol"></section>
-
-    <!-- Material Comparison Table -->
-    <section class="spec-table-section" aria-label="Panduan Perbandingan Material">
-      <div class="spec-table-header">
-        <h2 class="section-title">Panduan Pemilihan Material</h2>
-        <p class="section-desc">Perbandingan teknis antar seri untuk menyesuaikan gaya bermain Anda.</p>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Seri Material</th>
-              <th>Ketebalan</th>
-              <th>Tingkat Gesekan</th>
-              <th>Daya Serap Keringat</th>
-              <th>Rekomendasi Game</th>
-              <th>Status Stok</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Carbon Fiber (Pro)</strong></td>
-              <td>0.28 mm</td>
-              <td>Sangat Licin (Fast Glide)</td>
-              <td>Tinggi</td>
-              <td>FPS (PUBG, CODM, Valorant Mobile)</td>
-              <td><span class="status-ready">Tersedia</span></td>
-            </tr>
-            <tr>
-              <td><strong>100% Silver Fiber</strong></td>
-              <td>0.30 mm</td>
-              <td>Seimbang (Balanced Control)</td>
-              <td>Sangat Tinggi</td>
-              <td>MOBA (Mobile Legends, Wild Rift)</td>
-              <td><span class="status-ready">Tersedia</span></td>
-            </tr>
-            <tr>
-              <td><strong>Ice Silk Breathable</strong></td>
-              <td>0.35 mm</td>
-              <td>Halus &amp; Sejuk</td>
-              <td>Maksimal (Anti-Lembap)</td>
-              <td>Sesi Bermain Panjang / Kasual</td>
-              <td><span class="status-ready">Tersedia</span></td>
-            </tr>
-            <tr>
-              <td><strong>Titanium Micro-Grip</strong></td>
-              <td>0.32 mm</td>
-              <td>Kontrol Presisi (Micro-Aim)</td>
-              <td>Tinggi</td>
-              <td>Sniper / Gyro &amp; Claw Grip</td>
-              <td><span class="status-ready">Tersedia</span></td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </section>
-  </main>
+
+    <main class="container main-section">
+      <div class="catalog-toolbar">
+        <div>
+          <h2 class="section-title">Katalog Produk</h2>
+          <p class="section-desc">Daftar lengkap 32 varian sarung jempol gaming beserta spesifikasi teknis dan harga resmi.</p>
+        </div>
+        <div class="catalog-meta" id="catalog-count">Menampilkan 32 Produk</div>
+      </div>
+
+      <section class="product-grid" id="product-grid" aria-label="Daftar Produk Sarung Jempol"></section>
+
+      <section class="spec-table-section" aria-label="Panduan Perbandingan Material">
+        <div class="spec-table-header">
+          <h2 class="section-title">Panduan Pemilihan Material</h2>
+          <p class="section-desc">Perbandingan teknis antar seri untuk menyesuaikan gaya bermain Anda.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Seri Material</th>
+                <th>Ketebalan</th>
+                <th>Tingkat Gesekan</th>
+                <th>Daya Serap Keringat</th>
+                <th>Rekomendasi Game</th>
+                <th>Status Stok</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Carbon Fiber (Pro)</strong></td>
+                <td>0.28 mm</td>
+                <td>Sangat Licin (Fast Glide)</td>
+                <td>Tinggi</td>
+                <td>FPS (PUBG, CODM, Valorant Mobile)</td>
+                <td><span class="status-ready">Tersedia</span></td>
+              </tr>
+              <tr>
+                <td><strong>100% Silver Fiber</strong></td>
+                <td>0.30 mm</td>
+                <td>Seimbang (Balanced Control)</td>
+                <td>Sangat Tinggi</td>
+                <td>MOBA (Mobile Legends, Wild Rift)</td>
+                <td><span class="status-ready">Tersedia</span></td>
+              </tr>
+              <tr>
+                <td><strong>Ice Silk Breathable</strong></td>
+                <td>0.35 mm</td>
+                <td>Halus &amp; Sejuk</td>
+                <td>Maksimal (Anti-Lembap)</td>
+                <td>Sesi Bermain Panjang / Kasual</td>
+                <td><span class="status-ready">Tersedia</span></td>
+              </tr>
+              <tr>
+                <td><strong>Titanium Micro-Grip</strong></td>
+                <td>0.32 mm</td>
+                <td>Kontrol Presisi (Micro-Aim)</td>
+                <td>Tinggi</td>
+                <td>Sniper / Gyro &amp; Claw Grip</td>
+                <td><span class="status-ready">Tersedia</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ==================== VIEW: CART ==================== -->
+  <div id="view-cart" class="hidden">
+    <header class="page-hero">
+      <span class="hero-kicker">Langkah 1 dari 3</span>
+      <h1>Keranjang Belanja</h1>
+      <p>Atur jumlah pesanan atau hapus item sebelum melanjutkan ke halaman checkout.</p>
+    </header>
+    <main class="page-container">
+      <div id="cart-root"></div>
+    </main>
+  </div>
+
+  <!-- ==================== VIEW: CHECKOUT ==================== -->
+  <div id="view-checkout" class="hidden">
+    <header class="page-hero">
+      <span class="hero-kicker">Langkah 2 dari 3</span>
+      <h1>Checkout Pesanan</h1>
+      <p>Lengkapi data penerima dan konfirmasi rincian pesanan sebelum membayar dengan QRIS.</p>
+    </header>
+    <main class="page-container">
+      <div id="checkout-root"></div>
+    </main>
+  </div>
+
+  <!-- ==================== VIEW: PAYMENT QRIS ==================== -->
+  <div id="view-payment" class="hidden">
+    <header class="page-hero">
+      <span class="hero-kicker">Langkah 3 dari 3 &bull; Pembayaran QRIS</span>
+      <h1>Pembayaran QRIS</h1>
+      <p>Scan kode QRIS di bawah ini menggunakan aplikasi mobile banking atau e-wallet Anda untuk menyelesaikan pesanan.</p>
+    </header>
+    <main class="page-container narrow">
+      <div id="payment-root"></div>
+    </main>
+  </div>
+
+  <!-- ==================== VIEW: THANK YOU / STRUK ==================== -->
+  <div id="view-thankyou" class="hidden">
+    <header class="page-hero">
+      <span class="hero-kicker">Konfirmasi Pesanan</span>
+      <h1>Terima Kasih atas Pesanan Anda</h1>
+      <p>Berikut adalah ringkasan struk dan status pembayaran pesanan Anda di FINGERLAB.ID.</p>
+    </header>
+    <main class="page-container narrow">
+      <div id="thankyou-root"></div>
+    </main>
+  </div>
+
+  <!-- ==================== VIEW: HISTORY ==================== -->
+  <div id="view-history" class="hidden">
+    <header class="page-hero">
+      <span class="hero-kicker">Status Tersinkronisasi Realtime</span>
+      <h1>Riwayat Transaksi</h1>
+      <p>Pantau seluruh pesanan dan status pembayaran QRIS Anda secara langsung.</p>
+    </header>
+    <main class="page-container">
+      <div id="history-root"></div>
+    </main>
+  </div>
+
+  <!-- ==================== VIEW: QRIS SIMULATOR ==================== -->
+  <div id="view-simulator" class="hidden">
+    <header class="page-hero">
+      <span class="hero-kicker">Live Sync Simulator</span>
+      <h1>Simulator Approve QRIS</h1>
+      <p>Approve atau tolak transaksi QRIS FINGERLAB.ID secara realtime (sinkron antar tab).</p>
+    </header>
+    <main class="page-container narrow">
+      <div id="simulator-root"></div>
+      <div id="simulator-log" style="margin-top:16px; font-size:0.8rem; color:var(--ink-muted); text-align:center;"></div>
+    </main>
+  </div>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -790,7 +1558,7 @@
 
       <div class="footer-bottom">
         <span>&copy; <span id="year"></span> PT Fingerlab Aksesoris Indonesia. Seluruh hak cipta dilindungi.</span>
-        <span>Halaman Katalog Statis (Display Only)</span>
+        <span>Simulasi Pemesanan &amp; Pembayaran QRIS</span>
       </div>
     </div>
   </footer>
@@ -811,619 +1579,963 @@
       }
     }
 
-    const catalogData = [
-      // === BAGIAN ATAS: SERI V4 FLAGSHIP (8 GAMBAR: #1 - #8) ===
-      {
-        img: "Sarung Jmepol Website/sarjem v4 galaxy.jpg",
-        sku: "FL-001",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Galaxy Nebula",
-        summary: "Seri flagship V4 motif galaxy dengan rajutan ultra-tipis 0.26 mm dan sensitivitas sentuh maksimal.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "2 Pcs + Tin Box",
-        price: "Rp 43.000",
-        oldPrice: "Rp 55.000",
-        discount: "-22%",
-        rating: "5.0",
-        sold: "2,4rb terjual",
-        badge: "Terlaris V4",
-        isPromo: true
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 hitam.jpg",
-        sku: "FL-002",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Stealth Black",
-        summary: "Desain V4 serba hitam dengan teknologi anti-gulung pada pangkal jari dan akurasi micro-aim tinggi.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "2 Pcs + Box",
-        price: "Rp 39.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.9",
-        sold: "1,9rb terjual",
-        badge: "Flagship V4",
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 emas.jpg",
-        sku: "FL-003",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Championship Gold",
-        summary: "Edisi turnamen V4 aksen emas dengan konduktivitas penuh 360 derajat untuk gaya grip claw maupun thumb.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "2 Pcs + Box",
-        price: "Rp 41.000",
-        oldPrice: "Rp 50.000",
-        discount: "-18%",
-        rating: "5.0",
-        sold: "1,5rb terjual",
-        badge: "Pro Grade",
-        isPromo: true
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 merah.jpg",
-        sku: "FL-004",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Crimson Flare",
-        summary: "Varian merah menyala generasi V4 untuk pergerakan flick cepat dan respons layar 144Hz tanpa delay.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "2 Pcs + Box",
-        price: "Rp 39.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.9",
-        sold: "1,1rb terjual",
-        badge: "144Hz Ready",
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 biru.jpg",
-        sku: "FL-005",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Cyber Blue",
-        summary: "Rajutan V4 warna biru elektrik dengan serat anti-keringat untuk sesi push rank kompetitif.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "2 Pcs + Box",
-        price: "Rp 39.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.8",
-        sold: "920 terjual",
-        badge: null,
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 hijau.jpg",
-        sku: "FL-006",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Venom Green",
-        summary: "Edisi hijau neon V4 dengan kelenturan manset presisi yang nyaman dipakai berjam-jam.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "2 Pcs + Box",
-        price: "Rp 39.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.8",
-        sold: "780 terjual",
-        badge: null,
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 oren.jpg",
-        sku: "FL-007",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Blazing Orange",
-        summary: "Seri V4 warna oranye dengan daya tahan gesekan tinggi pada tempered glass maupun layar matte.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "2 Pcs + Box",
-        price: "Rp 39.000",
-        oldPrice: "Rp 48.000",
-        discount: "-19%",
-        rating: "4.9",
-        sold: "850 terjual",
-        badge: "Promo",
-        isPromo: true
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 pink.jpg",
-        sku: "FL-008",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Neon Rose",
-        summary: "Kombinasi warna pink cerah dengan tekstur rajutan mulus tanpa jahitan sambungan di ujung jari.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "2 Pcs + Box",
-        price: "Rp 39.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.9",
-        sold: "960 terjual",
-        badge: "Rilis Baru",
-        isPromo: false
-      },
+    (function () {
+      "use strict";
 
-      // === BAGIAN TENGAH: SERI V2 EDITION (6 GAMBAR: #9 - #14) ===
-      {
-        img: "Sarung Jmepol Website/sarjem v2 emas.jpg",
-        sku: "FL-009",
-        series: "Seri V2 Edition",
-        name: "FingerLab V2 — Royal Gold",
-        summary: "Generasi V2 edisi emas dengan manset pengunci elastis agar tidak mudah bergeser saat bermain intens.",
-        material: "Silver Copper V2",
-        thickness: "0.29 mm",
-        pack: "2 Pcs + Box",
-        price: "Rp 34.000",
-        oldPrice: "Rp 42.000",
-        discount: "-19%",
-        rating: "4.9",
-        sold: "1,3rb terjual",
-        badge: "Edisi V2",
-        isPromo: true
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v2 biru.jpg",
-        sku: "FL-010",
-        series: "Seri V2 Edition",
-        name: "FingerLab V2 — Cobalt Blue",
-        summary: "Peningkatan kerapatan rajut V2 warna biru kobalt yang meminimalkan gesekan di segala kondisi.",
-        material: "Silver Nylon V2",
-        thickness: "0.29 mm",
-        pack: "2 Pcs",
-        price: "Rp 31.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.8",
-        sold: "740 terjual",
-        badge: null,
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v2 merah.jpg",
-        sku: "FL-011",
-        series: "Seri V2 Edition",
-        name: "FingerLab V2 — Scarlet Red",
-        summary: "Varian merah V2 dengan keseimbangan kecepatan glide dan kontrol recoil untuk game FPS dan MOBA.",
-        material: "Silver Nylon V2",
-        thickness: "0.29 mm",
-        pack: "2 Pcs",
-        price: "Rp 31.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.8",
-        sold: "690 terjual",
-        badge: null,
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v2 hijau.jpg",
-        sku: "FL-012",
-        series: "Seri V2 Edition",
-        name: "FingerLab V2 — Emerald Green",
-        summary: "Struktur rajut berpori V2 warna hijau yang menjaga sirkulasi udara tetap sejuk di ujung jari.",
-        material: "Silver Nylon V2",
-        thickness: "0.29 mm",
-        pack: "2 Pcs",
-        price: "Rp 31.000",
-        oldPrice: "Rp 38.000",
-        discount: "-18%",
-        rating: "4.7",
-        sold: "580 terjual",
-        badge: "Hemat",
-        isPromo: true
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v2 ungu.jpg",
-        sku: "FL-013",
-        series: "Seri V2 Edition",
-        name: "FingerLab V2 — Violet Storm",
-        summary: "Varian ungu V2 dengan daya tahan rajutan tinggi dan dapat dicuci ulang tanpa mengurangi konduktivitas.",
-        material: "Silver Nylon V2",
-        thickness: "0.29 mm",
-        pack: "2 Pcs",
-        price: "Rp 31.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.8",
-        sold: "610 terjual",
-        badge: null,
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v2 pink.jpg",
-        sku: "FL-014",
-        series: "Seri V2 Edition",
-        name: "FingerLab V2 — Sakura Pink",
-        summary: "Kombinasi warna pink pastel V2 dengan serat konduktif halus yang lembut dan nyaman di kulit.",
-        material: "Silver Nylon V2",
-        thickness: "0.29 mm",
-        pack: "2 Pcs",
-        price: "Rp 31.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.9",
-        sold: "820 terjual",
-        badge: "Favorit",
-        isPromo: false
-      },
+      const CART_KEY = "fl_cart_v1";
+      const ORDERS_KEY = "fl_orders_v1";
+      const CHANNEL_NAME = "fingerlab_realtime_v1";
 
-      // === BAGIAN BAWAH: SERI SILVER FIBER (8 GAMBAR: #15 - #22) ===
-      {
-        img: "Sarung Jmepol Website/sarjem silver fiber hitam.jpg",
-        sku: "FL-015",
-        series: "Seri Silver Fiber",
-        name: "Silver Fiber Pro — Obsidian Black",
-        summary: "Varian hitam klasik dengan rajutan 100% serat perak konduktif 24-jarum untuk kontrol presisi.",
-        material: "Pure Silver Fiber",
-        thickness: "0.30 mm",
-        pack: "2 Pcs + Pouch",
-        price: "Rp 28.000",
-        oldPrice: "Rp 35.000",
-        discount: "-20%",
-        rating: "4.9",
-        sold: "2,1rb terjual",
-        badge: "Best Seller",
-        isPromo: true
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem silver fiber biru.jpg",
-        sku: "FL-016",
-        series: "Seri Silver Fiber",
-        name: "Silver Fiber Pro — Electric Blue",
-        summary: "Rajutan serat perak warna biru elektrik, anti-keringat dan responsif di seluruh permukaan layar.",
-        material: "Pure Silver Fiber",
-        thickness: "0.30 mm",
-        pack: "2 Pcs + Pouch",
-        price: "Rp 28.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.8",
-        sold: "940 terjual",
-        badge: null,
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem silver fiber merah.jpg",
-        sku: "FL-017",
-        series: "Seri Silver Fiber",
-        name: "Silver Fiber Pro — Crimson Red",
-        summary: "Edisi merah crimson dengan konduktivitas tinggi untuk pergerakan cepat tanpa ghost touch.",
-        material: "Pure Silver Fiber",
-        thickness: "0.30 mm",
-        pack: "2 Pcs + Pouch",
-        price: "Rp 28.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.9",
-        sold: "870 terjual",
-        badge: null,
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem silver fiber hijau.jpg",
-        sku: "FL-018",
-        series: "Seri Silver Fiber",
-        name: "Silver Fiber Pro — Neon Green",
-        summary: "Desain ergonomis dengan serat perak elastis warna hijau neon yang pas di berbagai ukuran jari.",
-        material: "Pure Silver Fiber",
-        thickness: "0.30 mm",
-        pack: "2 Pcs",
-        price: "Rp 26.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.8",
-        sold: "630 terjual",
-        badge: null,
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem silver fiber kuning.jpg",
-        sku: "FL-019",
-        series: "Seri Silver Fiber",
-        name: "Silver Fiber Pro — Solar Yellow",
-        summary: "Varian kuning cerah dengan daya serap keringat tinggi untuk kenyamanan bermain jangka panjang.",
-        material: "Pure Silver Fiber",
-        thickness: "0.30 mm",
-        pack: "2 Pcs",
-        price: "Rp 26.000",
-        oldPrice: "Rp 32.000",
-        discount: "-19%",
-        rating: "4.8",
-        sold: "550 terjual",
-        badge: "Promo",
-        isPromo: true
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem silver fiber oren.jpg",
-        sku: "FL-020",
-        series: "Seri Silver Fiber",
-        name: "Silver Fiber Pro — Sunset Orange",
-        summary: "Serat perak konduktif warna oranye dengan tenunan rapat yang menahan minyak dari ujung jari.",
-        material: "Pure Silver Fiber",
-        thickness: "0.30 mm",
-        pack: "2 Pcs",
-        price: "Rp 26.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.7",
-        sold: "490 terjual",
-        badge: null,
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem silver fiber ungu.jpg",
-        sku: "FL-021",
-        series: "Seri Silver Fiber",
-        name: "Silver Fiber Pro — Phantom Purple",
-        summary: "Warna ungu elegan dengan jahitan tepi halus yang tidak meninggalkan bekas tekanan di jari.",
-        material: "Pure Silver Fiber",
-        thickness: "0.30 mm",
-        pack: "2 Pcs",
-        price: "Rp 26.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.8",
-        sold: "520 terjual",
-        badge: null,
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem silver fiber pink.jpg",
-        sku: "FL-022",
-        series: "Seri Silver Fiber",
-        name: "Silver Fiber Pro — Rose Pink",
-        summary: "Varian pink serat perak ringan dengan kelenturan tinggi untuk penggunaan harian maupun kasual.",
-        material: "Pure Silver Fiber",
-        thickness: "0.30 mm",
-        pack: "2 Pcs",
-        price: "Rp 26.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.9",
-        sold: "710 terjual",
-        badge: null,
-        isPromo: false
-      },
+      const catalogData = [
+        { img: "Sarung Jmepol Website/sarjem v4 galaxy.jpg", sku: "FL-001", series: "Seri V4 Flagship", name: "FingerLab V4 — Galaxy Nebula", summary: "Seri flagship V4 motif galaxy dengan rajutan ultra-tipis 0.26 mm dan sensitivitas sentuh maksimal.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "2 Pcs + Tin Box", priceNum: 43000, price: "Rp 43.000", oldPrice: "Rp 55.000", discount: "-22%", rating: "5.0", sold: "2,4rb terjual", badge: "Terlaris V4", isPromo: true },
+        { img: "Sarung Jmepol Website/sarjem v4 hitam.jpg", sku: "FL-002", series: "Seri V4 Flagship", name: "FingerLab V4 — Stealth Black", summary: "Desain V4 serba hitam dengan teknologi anti-gulung pada pangkal jari dan akurasi micro-aim tinggi.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "2 Pcs + Box", priceNum: 39000, price: "Rp 39.000", oldPrice: null, discount: null, rating: "4.9", sold: "1,9rb terjual", badge: "Flagship V4", isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v4 emas.jpg", sku: "FL-003", series: "Seri V4 Flagship", name: "FingerLab V4 — Championship Gold", summary: "Edisi turnamen V4 aksen emas dengan konduktivitas penuh 360 derajat untuk gaya grip claw maupun thumb.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "2 Pcs + Box", priceNum: 41000, price: "Rp 41.000", oldPrice: "Rp 50.000", discount: "-18%", rating: "5.0", sold: "1,5rb terjual", badge: "Pro Grade", isPromo: true },
+        { img: "Sarung Jmepol Website/sarjem v4 merah.jpg", sku: "FL-004", series: "Seri V4 Flagship", name: "FingerLab V4 — Crimson Flare", summary: "Varian merah menyala generasi V4 untuk pergerakan flick cepat dan respons layar 144Hz tanpa delay.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "2 Pcs + Box", priceNum: 39000, price: "Rp 39.000", oldPrice: null, discount: null, rating: "4.9", sold: "1,1rb terjual", badge: "144Hz Ready", isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v4 biru.jpg", sku: "FL-005", series: "Seri V4 Flagship", name: "FingerLab V4 — Cyber Blue", summary: "Rajutan V4 warna biru elektrik dengan serat anti-keringat untuk sesi push rank kompetitif.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "2 Pcs + Box", priceNum: 39000, price: "Rp 39.000", oldPrice: null, discount: null, rating: "4.8", sold: "920 terjual", badge: null, isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v4 hijau.jpg", sku: "FL-006", series: "Seri V4 Flagship", name: "FingerLab V4 — Venom Green", summary: "Edisi hijau neon V4 dengan kelenturan manset presisi yang nyaman dipakai berjam-jam.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "2 Pcs + Box", priceNum: 39000, price: "Rp 39.000", oldPrice: null, discount: null, rating: "4.8", sold: "780 terjual", badge: null, isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v4 oren.jpg", sku: "FL-007", series: "Seri V4 Flagship", name: "FingerLab V4 — Blazing Orange", summary: "Seri V4 warna oranye dengan daya tahan gesekan tinggi pada tempered glass maupun layar matte.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "2 Pcs + Box", priceNum: 39000, price: "Rp 39.000", oldPrice: "Rp 48.000", discount: "-19%", rating: "4.9", sold: "850 terjual", badge: "Promo", isPromo: true },
+        { img: "Sarung Jmepol Website/sarjem v4 pink.jpg", sku: "FL-008", series: "Seri V4 Flagship", name: "FingerLab V4 — Neon Rose", summary: "Kombinasi warna pink cerah dengan tekstur rajutan mulus tanpa jahitan sambungan di ujung jari.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "2 Pcs + Box", priceNum: 39000, price: "Rp 39.000", oldPrice: null, discount: null, rating: "4.9", sold: "960 terjual", badge: "Rilis Baru", isPromo: false },
 
-      // === REPETITIF SESUAI URUTAN DARI SERI V4 FLAGSHIP KE SERI V2 EDITION (#23 - #32) ===
-      {
-        img: "Sarung Jmepol Website/sarjem v4 galaxy.jpg",
-        sku: "FL-023",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Galaxy Nebula (4-Finger Set)",
-        summary: "Paket 4 jari (jempol dan telunjuk) seri V4 Galaxy Nebula untuk kontrol claw grip profesional.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "4 Pcs + Pouch",
-        price: "Rp 75.000",
-        oldPrice: "Rp 95.000",
-        discount: "-21%",
-        rating: "5.0",
-        sold: "640 terjual",
-        badge: "4-Finger Set",
-        isPromo: true
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 hitam.jpg",
-        sku: "FL-024",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Stealth Black (4-Finger Set)",
-        summary: "Set lengkap 4 jari warna Stealth Black V4 untuk akurasi tombol tembak dan scope tanpa selip.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "4 Pcs + Pouch",
-        price: "Rp 72.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.9",
-        sold: "530 terjual",
-        badge: "4-Finger Set",
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 emas.jpg",
-        sku: "FL-025",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Championship Gold (Tin Box)",
-        summary: "Edisi kolektor V4 Gold dilengkapi kotak penyimpanan logam eksklusif anti-penyok.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "2 Pcs + Tin Box",
-        price: "Rp 48.000",
-        oldPrice: null,
-        discount: null,
-        rating: "5.0",
-        sold: "470 terjual",
-        badge: "Collector Box",
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 merah.jpg",
-        sku: "FL-026",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Crimson Flare (Duo Pack)",
-        summary: "Paket hemat 2 pasang (4 pcs) V4 Crimson Flare untuk cadangan latihan maupun turnamen.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "4 Pcs + Box",
-        price: "Rp 69.000",
-        oldPrice: "Rp 85.000",
-        discount: "-19%",
-        rating: "4.9",
-        sold: "420 terjual",
-        badge: "Duo Pack",
-        isPromo: true
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 biru.jpg",
-        sku: "FL-027",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Cyber Blue (6-Finger Tablet)",
-        summary: "Paket 6 jari seri V4 Cyber Blue khusus pemain iPad dan tablet layar lebar kompetitif.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "6 Pcs + Pouch",
-        price: "Rp 99.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.9",
-        sold: "310 terjual",
-        badge: "Tablet Pro",
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 hijau.jpg",
-        sku: "FL-028",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Venom Green (Duo Pack)",
-        summary: "Paket 2 pasang V4 Venom Green dengan serat elastis yang tahan tarikan dan tidak mudah melar.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "4 Pcs + Box",
-        price: "Rp 69.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.8",
-        sold: "360 terjual",
-        badge: "Duo Pack",
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 oren.jpg",
-        sku: "FL-029",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Blazing Orange (XL Fit)",
-        summary: "Ukuran khusus jari lebih besar pada seri V4 Blazing Orange agar tetap nyaman tanpa menekan sirkulasi.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "2 Pcs + Box",
-        price: "Rp 42.000",
-        oldPrice: null,
-        discount: null,
-        rating: "4.9",
-        sold: "390 terjual",
-        badge: "XL Fit",
-        isPromo: false
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v4 pink.jpg",
-        sku: "FL-030",
-        series: "Seri V4 Flagship",
-        name: "FingerLab V4 — Neon Rose (Couple Pack)",
-        summary: "Paket berisi 2 pasang V4 Neon Rose lengkap dengan kotak penyimpanan praktis untuk dibawa bepergian.",
-        material: "Nano Silver V4",
-        thickness: "0.26 mm",
-        pack: "4 Pcs + Box",
-        price: "Rp 69.000",
-        oldPrice: "Rp 85.000",
-        discount: "-19%",
-        rating: "5.0",
-        sold: "480 terjual",
-        badge: "Paket Hemat",
-        isPromo: true
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v2 emas.jpg",
-        sku: "FL-031",
-        series: "Seri V2 Edition",
-        name: "FingerLab V2 — Royal Gold (Team Pack 6 Pcs)",
-        summary: "Paket tim berisi 3 pasang (6 pcs) seri V2 Royal Gold lengkap dengan kotak penyimpanan logam.",
-        material: "Silver Copper V2",
-        thickness: "0.29 mm",
-        pack: "6 Pcs + Tin Box",
-        price: "Rp 89.000",
-        oldPrice: "Rp 115.000",
-        discount: "-23%",
-        rating: "5.0",
-        sold: "590 terjual",
-        badge: "Team Pack",
-        isPromo: true
-      },
-      {
-        img: "Sarung Jmepol Website/sarjem v2 biru.jpg",
-        sku: "FL-032",
-        series: "Seri V2 Edition",
-        name: "FingerLab V2 — Cobalt Blue (Starter Bundle 10 Pcs)",
-        summary: "Paket stok lengkap 5 pasang (10 pcs) seri V2 Cobalt Blue untuk kebutuhan latihan harian tim esports.",
-        material: "Silver Nylon V2",
-        thickness: "0.29 mm",
-        pack: "10 Pcs + Case",
-        price: "Rp 135.000",
-        oldPrice: "Rp 175.000",
-        discount: "-23%",
-        rating: "5.0",
-        sold: "440 terjual",
-        badge: "Best Value",
-        isPromo: true
+        { img: "Sarung Jmepol Website/sarjem v2 emas.jpg", sku: "FL-009", series: "Seri V2 Edition", name: "FingerLab V2 — Royal Gold", summary: "Generasi V2 edisi emas dengan manset pengunci elastis agar tidak mudah bergeser saat bermain intens.", material: "Silver Copper V2", thickness: "0.29 mm", pack: "2 Pcs + Box", priceNum: 34000, price: "Rp 34.000", oldPrice: "Rp 42.000", discount: "-19%", rating: "4.9", sold: "1,3rb terjual", badge: "Edisi V2", isPromo: true },
+        { img: "Sarung Jmepol Website/sarjem v2 biru.jpg", sku: "FL-010", series: "Seri V2 Edition", name: "FingerLab V2 — Cobalt Blue", summary: "Peningkatan kerapatan rajut V2 warna biru kobalt yang meminimalkan gesekan di segala kondisi.", material: "Silver Nylon V2", thickness: "0.29 mm", pack: "2 Pcs", priceNum: 31000, price: "Rp 31.000", oldPrice: null, discount: null, rating: "4.8", sold: "740 terjual", badge: null, isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v2 merah.jpg", sku: "FL-011", series: "Seri V2 Edition", name: "FingerLab V2 — Scarlet Red", summary: "Varian merah V2 dengan keseimbangan kecepatan glide dan kontrol recoil untuk game FPS dan MOBA.", material: "Silver Nylon V2", thickness: "0.29 mm", pack: "2 Pcs", priceNum: 31000, price: "Rp 31.000", oldPrice: null, discount: null, rating: "4.8", sold: "690 terjual", badge: null, isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v2 hijau.jpg", sku: "FL-012", series: "Seri V2 Edition", name: "FingerLab V2 — Emerald Green", summary: "Struktur rajut berpori V2 warna hijau yang menjaga sirkulasi udara tetap sejuk di ujung jari.", material: "Silver Nylon V2", thickness: "0.29 mm", pack: "2 Pcs", priceNum: 31000, price: "Rp 31.000", oldPrice: "Rp 38.000", discount: "-18%", rating: "4.7", sold: "580 terjual", badge: "Hemat", isPromo: true },
+        { img: "Sarung Jmepol Website/sarjem v2 ungu.jpg", sku: "FL-013", series: "Seri V2 Edition", name: "FingerLab V2 — Violet Storm", summary: "Varian ungu V2 dengan daya tahan rajutan tinggi dan dapat dicuci ulang tanpa mengurangi konduktivitas.", material: "Silver Nylon V2", thickness: "0.29 mm", pack: "2 Pcs", priceNum: 31000, price: "Rp 31.000", oldPrice: null, discount: null, rating: "4.8", sold: "610 terjual", badge: null, isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v2 pink.jpg", sku: "FL-014", series: "Seri V2 Edition", name: "FingerLab V2 — Sakura Pink", summary: "Kombinasi warna pink pastel V2 dengan serat konduktif halus yang lembut dan nyaman di kulit.", material: "Silver Nylon V2", thickness: "0.29 mm", pack: "2 Pcs", priceNum: 31000, price: "Rp 31.000", oldPrice: null, discount: null, rating: "4.9", sold: "820 terjual", badge: "Favorit", isPromo: false },
+
+        { img: "Sarung Jmepol Website/sarjem silver fiber hitam.jpg", sku: "FL-015", series: "Seri Silver Fiber", name: "Silver Fiber Pro — Obsidian Black", summary: "Varian hitam klasik dengan rajutan 100% serat perak konduktif 24-jarum untuk kontrol presisi.", material: "Pure Silver Fiber", thickness: "0.30 mm", pack: "2 Pcs + Pouch", priceNum: 28000, price: "Rp 28.000", oldPrice: "Rp 35.000", discount: "-20%", rating: "4.9", sold: "2,1rb terjual", badge: "Best Seller", isPromo: true },
+        { img: "Sarung Jmepol Website/sarjem silver fiber biru.jpg", sku: "FL-016", series: "Seri Silver Fiber", name: "Silver Fiber Pro — Electric Blue", summary: "Rajutan serat perak warna biru elektrik, anti-keringat dan responsif di seluruh permukaan layar.", material: "Pure Silver Fiber", thickness: "0.30 mm", pack: "2 Pcs + Pouch", priceNum: 28000, price: "Rp 28.000", oldPrice: null, discount: null, rating: "4.8", sold: "940 terjual", badge: null, isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem silver fiber merah.jpg", sku: "FL-017", series: "Seri Silver Fiber", name: "Silver Fiber Pro — Crimson Red", summary: "Edisi merah crimson dengan konduktivitas tinggi untuk pergerakan cepat tanpa ghost touch.", material: "Pure Silver Fiber", thickness: "0.30 mm", pack: "2 Pcs + Pouch", priceNum: 28000, price: "Rp 28.000", oldPrice: null, discount: null, rating: "4.9", sold: "870 terjual", badge: null, isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem silver fiber hijau.jpg", sku: "FL-018", series: "Seri Silver Fiber", name: "Silver Fiber Pro — Neon Green", summary: "Desain ergonomis dengan serat perak elastis warna hijau neon yang pas di berbagai ukuran jari.", material: "Pure Silver Fiber", thickness: "0.30 mm", pack: "2 Pcs", priceNum: 26000, price: "Rp 26.000", oldPrice: null, discount: null, rating: "4.8", sold: "630 terjual", badge: null, isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem silver fiber kuning.jpg", sku: "FL-019", series: "Seri Silver Fiber", name: "Silver Fiber Pro — Solar Yellow", summary: "Varian kuning cerah dengan daya serap keringat tinggi untuk kenyamanan bermain jangka panjang.", material: "Pure Silver Fiber", thickness: "0.30 mm", pack: "2 Pcs", priceNum: 26000, price: "Rp 26.000", oldPrice: "Rp 32.000", discount: "-19%", rating: "4.8", sold: "550 terjual", badge: "Promo", isPromo: true },
+        { img: "Sarung Jmepol Website/sarjem silver fiber oren.jpg", sku: "FL-020", series: "Seri Silver Fiber", name: "Silver Fiber Pro — Sunset Orange", summary: "Serat perak konduktif warna oranye dengan tenunan rapat yang menahan minyak dari ujung jari.", material: "Pure Silver Fiber", thickness: "0.30 mm", pack: "2 Pcs", priceNum: 26000, price: "Rp 26.000", oldPrice: null, discount: null, rating: "4.7", sold: "490 terjual", badge: null, isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem silver fiber ungu.jpg", sku: "FL-021", series: "Seri Silver Fiber", name: "Silver Fiber Pro — Phantom Purple", summary: "Warna ungu elegan dengan jahitan tepi halus yang tidak meninggalkan bekas tekanan di jari.", material: "Pure Silver Fiber", thickness: "0.30 mm", pack: "2 Pcs", priceNum: 26000, price: "Rp 26.000", oldPrice: null, discount: null, rating: "4.8", sold: "520 terjual", badge: null, isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem silver fiber pink.jpg", sku: "FL-022", series: "Seri Silver Fiber", name: "Silver Fiber Pro — Rose Pink", summary: "Varian pink serat perak ringan dengan kelenturan tinggi untuk penggunaan harian maupun kasual.", material: "Pure Silver Fiber", thickness: "0.30 mm", pack: "2 Pcs", priceNum: 26000, price: "Rp 26.000", oldPrice: null, discount: null, rating: "4.9", sold: "710 terjual", badge: null, isPromo: false },
+
+        { img: "Sarung Jmepol Website/sarjem v4 galaxy.jpg", sku: "FL-023", series: "Seri V4 Flagship", name: "FingerLab V4 — Galaxy Nebula (4-Finger Set)", summary: "Paket 4 jari (jempol dan telunjuk) seri V4 Galaxy Nebula untuk kontrol claw grip profesional.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "4 Pcs + Pouch", priceNum: 75000, price: "Rp 75.000", oldPrice: "Rp 95.000", discount: "-21%", rating: "5.0", sold: "640 terjual", badge: "4-Finger Set", isPromo: true },
+        { img: "Sarung Jmepol Website/sarjem v4 hitam.jpg", sku: "FL-024", series: "Seri V4 Flagship", name: "FingerLab V4 — Stealth Black (4-Finger Set)", summary: "Set lengkap 4 jari warna Stealth Black V4 untuk akurasi tombol tembak dan scope tanpa selip.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "4 Pcs + Pouch", priceNum: 72000, price: "Rp 72.000", oldPrice: null, discount: null, rating: "4.9", sold: "530 terjual", badge: "4-Finger Set", isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v4 emas.jpg", sku: "FL-025", series: "Seri V4 Flagship", name: "FingerLab V4 — Championship Gold (Tin Box)", summary: "Edisi kolektor V4 Gold dilengkapi kotak penyimpanan logam eksklusif anti-penyok.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "2 Pcs + Tin Box", priceNum: 48000, price: "Rp 48.000", oldPrice: null, discount: null, rating: "5.0", sold: "470 terjual", badge: "Collector Box", isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v4 merah.jpg", sku: "FL-026", series: "Seri V4 Flagship", name: "FingerLab V4 — Crimson Flare (Duo Pack)", summary: "Paket hemat 2 pasang (4 pcs) V4 Crimson Flare untuk cadangan latihan maupun turnamen.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "4 Pcs + Box", priceNum: 69000, price: "Rp 69.000", oldPrice: "Rp 85.000", discount: "-19%", rating: "4.9", sold: "420 terjual", badge: "Duo Pack", isPromo: true },
+        { img: "Sarung Jmepol Website/sarjem v4 biru.jpg", sku: "FL-027", series: "Seri V4 Flagship", name: "FingerLab V4 — Cyber Blue (6-Finger Tablet)", summary: "Paket 6 jari seri V4 Cyber Blue khusus pemain iPad dan tablet layar lebar kompetitif.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "6 Pcs + Pouch", priceNum: 99000, price: "Rp 99.000", oldPrice: null, discount: null, rating: "4.9", sold: "310 terjual", badge: "Tablet Pro", isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v4 hijau.jpg", sku: "FL-028", series: "Seri V4 Flagship", name: "FingerLab V4 — Venom Green (Duo Pack)", summary: "Paket 2 pasang V4 Venom Green dengan serat elastis yang tahan tarikan dan tidak mudah melar.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "4 Pcs + Box", priceNum: 69000, price: "Rp 69.000", oldPrice: null, discount: null, rating: "4.8", sold: "360 terjual", badge: "Duo Pack", isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v4 oren.jpg", sku: "FL-029", series: "Seri V4 Flagship", name: "FingerLab V4 — Blazing Orange (XL Fit)", summary: "Ukuran khusus jari lebih besar pada seri V4 Blazing Orange agar tetap nyaman tanpa menekan sirkulasi.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "2 Pcs + Box", priceNum: 42000, price: "Rp 42.000", oldPrice: null, discount: null, rating: "4.9", sold: "390 terjual", badge: "XL Fit", isPromo: false },
+        { img: "Sarung Jmepol Website/sarjem v4 pink.jpg", sku: "FL-030", series: "Seri V4 Flagship", name: "FingerLab V4 — Neon Rose (Couple Pack)", summary: "Paket berisi 2 pasang V4 Neon Rose lengkap dengan kotak penyimpanan praktis untuk dibawa bepergian.", material: "Nano Silver V4", thickness: "0.26 mm", pack: "4 Pcs + Box", priceNum: 69000, price: "Rp 69.000", oldPrice: "Rp 85.000", discount: "-19%", rating: "5.0", sold: "480 terjual", badge: "Paket Hemat", isPromo: true },
+        { img: "Sarung Jmepol Website/sarjem v2 emas.jpg", sku: "FL-031", series: "Seri V2 Edition", name: "FingerLab V2 — Royal Gold (Team Pack 6 Pcs)", summary: "Paket tim berisi 3 pasang (6 pcs) seri V2 Royal Gold lengkap dengan kotak penyimpanan logam.", material: "Silver Copper V2", thickness: "0.29 mm", pack: "6 Pcs + Tin Box", priceNum: 89000, price: "Rp 89.000", oldPrice: "Rp 115.000", discount: "-23%", rating: "5.0", sold: "590 terjual", badge: "Team Pack", isPromo: true },
+        { img: "Sarung Jmepol Website/sarjem v2 biru.jpg", sku: "FL-032", series: "Seri V2 Edition", name: "FingerLab V2 — Cobalt Blue (Starter Bundle 10 Pcs)", summary: "Paket stok lengkap 5 pasang (10 pcs) seri V2 Cobalt Blue untuk kebutuhan latihan harian tim esports.", material: "Silver Nylon V2", thickness: "0.29 mm", pack: "10 Pcs + Case", priceNum: 135000, price: "Rp 135.000", oldPrice: "Rp 175.000", discount: "-23%", rating: "5.0", sold: "440 terjual", badge: "Best Value", isPromo: true }
+      ];
+
+      let channel = null;
+      if (typeof BroadcastChannel !== "undefined") {
+        try { channel = new BroadcastChannel(CHANNEL_NAME); } catch (_) { channel = null; }
       }
-    ];
 
-    function initCatalog() {
-      const grid = document.getElementById("product-grid");
-      const countEl = document.getElementById("catalog-count");
-      const yearEl = document.getElementById("year");
+      let currentView = "katalog";
+      let activeOrderId = null;
+      let shippingMethod = "courier";
+      let historyFilter = "ALL";
+      let paymentPrevStatus = null;
+      let redirectTimer = null;
 
-      if (countEl) countEl.textContent = `Menampilkan ${catalogData.length} Produk`;
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-      if (!grid) return;
+      function broadcastEvent(type, payload) {
+        if (channel) {
+          try { channel.postMessage({ type, payload, ts: Date.now() }); } catch (_) {}
+        }
+      }
 
-      grid.innerHTML = catalogData.map((item) => {
-        const fileName = item.img.split("/").pop();
-        const badgeHTML = item.badge
-          ? `<span class="badge-tag ${item.isPromo ? "badge-promo" : ""}">${item.badge}</span>`
-          : "";
+      function formatRupiah(amount) {
+        return "Rp " + (Number(amount) || 0).toLocaleString("id-ID");
+      }
 
-        const oldPriceHTML = item.oldPrice
-          ? `<div class="price-strike-row">
-               <span class="price-old">${item.oldPrice}</span>
-               <span class="discount-pill">${item.discount}</span>
-             </div>`
-          : "";
+      function formatWaktu(iso) {
+        if (!iso) return "-";
+        return new Date(iso).toLocaleString("id-ID", {
+          day: "2-digit", month: "short", year: "numeric",
+          hour: "2-digit", minute: "2-digit", second: "2-digit"
+        });
+      }
 
-        return `
-          <article class="product-card">
-            <div class="product-thumb">
-              ${badgeHTML}
-              <img src="${item.img}" alt="${item.name}" onerror="handleImgFallback(this, '${fileName}')">
-              <span class="sku-label">${item.sku}</span>
-            </div>
-            <div class="product-info">
-              <span class="product-series">${item.series}</span>
-              <h3 class="product-title">${item.name}</h3>
-              <p class="product-summary">${item.summary}</p>
-              <div class="spec-list">
-                <div class="spec-item">Bahan: <strong>${item.material}</strong></div>
-                <div class="spec-item">Tebal: <strong>${item.thickness}</strong></div>
-                <div class="spec-item">Isi: <strong>${item.pack}</strong></div>
-                <div class="spec-item">Stok: <strong>Tersedia</strong></div>
+      function escapeHtml(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      // Cart API
+      function getCart() {
+        try {
+          const raw = localStorage.getItem(CART_KEY);
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (_) { return []; }
+      }
+
+      function saveCart(cart) {
+        localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        broadcastEvent("CART_UPDATED", { count: getCartCount() });
+        updateNavBadge();
+      }
+
+      function getProductById(sku) {
+        return catalogData.find((p) => p.sku === sku);
+      }
+
+      function addToCart(sku, qty) {
+        const product = getProductById(sku);
+        if (!product) return;
+        const addQty = Math.max(1, parseInt(qty, 10) || 1);
+        const cart = getCart();
+        const existing = cart.find((c) => c.id === sku);
+        if (existing) {
+          existing.qty = Math.min(99, existing.qty + addQty);
+        } else {
+          cart.push({
+            id: product.sku,
+            nama: product.name,
+            gambar: product.img,
+            satuan: product.pack,
+            hargaNum: product.priceNum,
+            qty: addQty
+          });
+        }
+        saveCart(cart);
+      }
+
+      function updateCartQty(sku, newQty) {
+        const qty = parseInt(newQty, 10);
+        if (isNaN(qty) || qty < 1) return removeFromCart(sku);
+        const cart = getCart();
+        const item = cart.find((c) => c.id === sku);
+        if (item) {
+          item.qty = Math.min(99, qty);
+          saveCart(cart);
+        }
+      }
+
+      function removeFromCart(sku) {
+        saveCart(getCart().filter((c) => c.id !== sku));
+      }
+
+      function clearCart() {
+        saveCart([]);
+      }
+
+      function getCartCount() {
+        return getCart().reduce((sum, item) => sum + (parseInt(item.qty, 10) || 0), 0);
+      }
+
+      function getCartTotals(shippingCost) {
+        const cart = getCart();
+        const subtotal = cart.reduce((sum, item) => sum + item.hargaNum * item.qty, 0);
+        const ongkir = cart.length > 0 ? (typeof shippingCost === "number" ? shippingCost : 15000) : 0;
+        return { subtotal, ongkir, grandTotal: subtotal + ongkir };
+      }
+
+      // Orders API
+      function getOrders() {
+        try {
+          const raw = localStorage.getItem(ORDERS_KEY);
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (_) { return []; }
+      }
+
+      function saveOrders(orders) {
+        localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+      }
+
+      function getOrderById(id) {
+        return getOrders().find((o) => o.id === id);
+      }
+
+      function createOrder(customer, shipMethod) {
+        const cart = getCart();
+        if (cart.length === 0) return null;
+        const ongkir = shipMethod === "pickup" ? 0 : 15000;
+        const totals = getCartTotals(ongkir);
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = String(now.getMonth() + 1).padStart(2, "0");
+        const d = String(now.getDate()).padStart(2, "0");
+        const rand = Math.floor(1000 + Math.random() * 9000);
+        const orderId = `INV-FL-${y}${m}${d}-${rand}`;
+
+        const order = {
+          id: orderId,
+          createdAt: now.toISOString(),
+          paidAt: null,
+          rejectedAt: null,
+          status: "PENDING",
+          paymentMethod: "QRIS",
+          qrisRef: "QRIS" + Date.now().toString().slice(-8),
+          approvalRef: null,
+          shippingMethod: shipMethod === "pickup" ? "Ambil di Gudang (Kemayoran)" : "Kurir Reguler (JNE / J&T / SiCepat)",
+          customer: {
+            nama: customer.nama,
+            telepon: customer.telepon,
+            alamat: customer.alamat,
+            kota: customer.kota,
+            catatan: customer.catatan || ""
+          },
+          items: cart.map((c) => ({
+            id: c.id,
+            nama: c.nama,
+            gambar: c.gambar,
+            satuan: c.satuan,
+            hargaNum: c.hargaNum,
+            qty: c.qty,
+            subtotal: c.hargaNum * c.qty
+          })),
+          subtotal: totals.subtotal,
+          ongkir: totals.ongkir,
+          grandTotal: totals.grandTotal
+        };
+
+        const orders = getOrders();
+        orders.unshift(order);
+        saveOrders(orders);
+        clearCart();
+        broadcastEvent("ORDER_CREATED", { orderId: order.id });
+        return order;
+      }
+
+      function updateOrderStatus(orderId, newStatus) {
+        const orders = getOrders();
+        const order = orders.find((o) => o.id === orderId);
+        if (!order) return null;
+
+        order.status = newStatus;
+        if (newStatus === "PAID") {
+          order.paidAt = new Date().toISOString();
+          order.approvalRef = "APR-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+        } else if (newStatus === "REJECTED") {
+          order.rejectedAt = new Date().toISOString();
+        }
+        saveOrders(orders);
+        broadcastEvent("ORDER_STATUS_CHANGED", { orderId: order.id, status: newStatus });
+        return order;
+      }
+
+      function renderStatusBadge(status) {
+        if (status === "PAID") return '<span class="status-badge status-paid">&#10003; Paid / Lunas</span>';
+        if (status === "REJECTED") return '<span class="status-badge status-rejected">&#10005; Ditolak</span>';
+        return '<span class="status-badge status-pending"><span class="pulse-dot"></span> Menunggu Bayar</span>';
+      }
+
+      function generateDummyQrisSvg(seedText) {
+        const size = 25;
+        const cell = 8;
+        const quiet = 16;
+        const totalPx = size * cell + quiet * 2;
+        let hash = 2166136261;
+        const text = String(seedText || "FINGERLAB-ID-QRIS");
+        for (let i = 0; i < text.length; i++) {
+          hash ^= text.charCodeAt(i);
+          hash = Math.imul(hash, 16777619);
+        }
+        function nextBit() {
+          hash ^= hash << 13;
+          hash ^= hash >>> 17;
+          hash ^= hash << 5;
+          return (hash >>> 0) % 2 === 1;
+        }
+        const grid = Array.from({ length: size }, () => Array(size).fill(false));
+        const reserved = Array.from({ length: size }, () => Array(size).fill(false));
+
+        function placeFinder(r0, c0) {
+          for (let r = -1; r <= 7; r++) {
+            for (let c = -1; c <= 7; c++) {
+              const rr = r0 + r, cc = c0 + c;
+              if (rr < 0 || rr >= size || cc < 0 || cc >= size) continue;
+              reserved[rr][cc] = true;
+              const inOuter = r >= 0 && r <= 6 && c >= 0 && c <= 6;
+              const onBorder = r === 0 || r === 6 || c === 0 || c === 6;
+              const inInner = r >= 2 && r <= 4 && c >= 2 && c <= 4;
+              grid[rr][cc] = inOuter && (onBorder || inInner);
+            }
+          }
+        }
+        function placeAlignment(r0, c0) {
+          for (let r = -2; r <= 2; r++) {
+            for (let c = -2; c <= 2; c++) {
+              const rr = r0 + r, cc = c0 + c;
+              reserved[rr][cc] = true;
+              grid[rr][cc] = Math.abs(r) === 2 || Math.abs(c) === 2 || (r === 0 && c === 0);
+            }
+          }
+        }
+        placeFinder(0, 0);
+        placeFinder(0, size - 7);
+        placeFinder(size - 7, 0);
+        placeAlignment(size - 7, size - 7);
+        for (let i = 8; i < size - 8; i++) {
+          reserved[6][i] = true; reserved[i][6] = true;
+          grid[6][i] = i % 2 === 0; grid[i][6] = i % 2 === 0;
+        }
+        for (let r = 10; r <= 14; r++) {
+          for (let c = 10; c <= 14; c++) {
+            reserved[r][c] = true; grid[r][c] = false;
+          }
+        }
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            if (!reserved[r][c]) grid[r][c] = nextBit();
+          }
+        }
+        let rects = "";
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            if (grid[r][c]) {
+              rects += `<rect x="${quiet + c * cell}" y="${quiet + r * cell}" width="${cell}" height="${cell}" fill="#18181b"/>`;
+            }
+          }
+        }
+        const cx = totalPx / 2, cy = totalPx / 2;
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalPx}" height="${totalPx}" viewBox="0 0 ${totalPx} ${totalPx}" role="img" aria-label="Kode QRIS"><rect width="100%" height="100%" fill="#ffffff"/>${rects}<rect x="${cx - 24}" y="${cy - 13}" width="48" height="26" rx="4" fill="#ffffff" stroke="#18181b" stroke-width="1.5"/><text x="${cx}" y="${cy + 4}" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#18181b">QRIS</text></svg>`;
+      }
+
+      let toastTimer = null;
+      function showToast(msg) {
+        let el = document.getElementById("fl-toast");
+        if (!el) {
+          el = document.createElement("div");
+          el.id = "fl-toast";
+          el.className = "toast";
+          document.body.appendChild(el);
+        }
+        el.textContent = msg;
+        el.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.classList.remove("show"), 2400);
+      }
+
+      function updateNavBadge() {
+        const badge = document.getElementById("nav-cart-count");
+        if (badge) badge.textContent = String(getCartCount());
+      }
+
+      // Navigation
+      function navigate(viewName, orderId) {
+        if (redirectTimer) {
+          clearInterval(redirectTimer);
+          redirectTimer = null;
+        }
+        currentView = viewName;
+        if (orderId) activeOrderId = orderId;
+        paymentPrevStatus = null;
+
+        const views = ["katalog", "cart", "checkout", "payment", "thankyou", "history", "simulator"];
+        views.forEach((v) => {
+          const el = document.getElementById("view-" + v);
+          if (el) el.classList.toggle("hidden", v !== viewName);
+        });
+
+        const navKey = (viewName === "checkout") ? "cart" : (viewName === "payment" || viewName === "thankyou") ? "history" : viewName;
+        document.querySelectorAll("[data-nav]").forEach((btn) => {
+          btn.classList.toggle("active", btn.getAttribute("data-nav") === navKey);
+        });
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        renderCurrentView();
+      }
+
+      // ==================== RENDERERS ====================
+      function renderCatalog() {
+        const grid = document.getElementById("product-grid");
+        const countEl = document.getElementById("catalog-count");
+        if (countEl) countEl.textContent = `Menampilkan ${catalogData.length} Produk`;
+        if (!grid) return;
+
+        const cart = getCart();
+        grid.innerHTML = catalogData.map((item) => {
+          const fileName = item.img.split("/").pop();
+          const badgeHTML = item.badge ? `<span class="badge-tag ${item.isPromo ? "badge-promo" : ""}">${escapeHtml(item.badge)}</span>` : "";
+          const oldPriceHTML = item.oldPrice ? `<div class="price-strike-row"><span class="price-old">${escapeHtml(item.oldPrice)}</span><span class="discount-pill">${escapeHtml(item.discount)}</span></div>` : "";
+          const found = cart.find((c) => c.id === item.sku);
+          const inCart = found ? found.qty : 0;
+          const btnText = inCart > 0 ? `+ Tambah Lagi (${inCart} di keranjang)` : "+ Tambah ke Keranjang";
+
+          return `
+            <article class="product-card">
+              <div class="product-thumb">
+                ${badgeHTML}
+                <img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.name)}" onerror="handleImgFallback(this, '${escapeHtml(fileName)}')">
+                <span class="sku-label">${escapeHtml(item.sku)}</span>
               </div>
-              <div class="product-pricing">
-                <div class="price-block">
-                  ${oldPriceHTML}
-                  <span class="price-now">${item.price}</span>
+              <div class="product-info">
+                <span class="product-series">${escapeHtml(item.series)}</span>
+                <h3 class="product-title">${escapeHtml(item.name)}</h3>
+                <p class="product-summary">${escapeHtml(item.summary)}</p>
+                <div class="spec-list">
+                  <div class="spec-item">Bahan: <strong>${escapeHtml(item.material)}</strong></div>
+                  <div class="spec-item">Tebal: <strong>${escapeHtml(item.thickness)}</strong></div>
+                  <div class="spec-item">Isi: <strong>${escapeHtml(item.pack)}</strong></div>
+                  <div class="spec-item">Stok: <strong>Tersedia</strong></div>
                 </div>
-                <div class="sales-meta">
-                  <div class="sales-rating">
-                    <span class="star-icon">&#9733;</span>
-                    <span>${item.rating}</span>
+                <div class="product-pricing">
+                  <div class="price-block">${oldPriceHTML}<span class="price-now">${escapeHtml(item.price)}</span></div>
+                  <div class="sales-meta">
+                    <div class="sales-rating"><span class="star-icon">&#9733;</span><span>${escapeHtml(item.rating)}</span></div>
+                    <span>${escapeHtml(item.sold)}</span>
                   </div>
-                  <span>${item.sold}</span>
+                </div>
+                <button type="button" class="btn btn-primary btn-block btn-add-cart" data-id="${escapeHtml(item.sku)}" style="margin-top: 14px;">${btnText}</button>
+              </div>
+            </article>
+          `;
+        }).join("");
+      }
+
+      function renderCart() {
+        const root = document.getElementById("cart-root");
+        const cart = getCart();
+        if (cart.length === 0) {
+          root.innerHTML = `
+            <div class="panel empty-state">
+              <h3>Keranjang belanja masih kosong</h3>
+              <p>Silakan pilih varian sarung jempol gaming terlebih dahulu dari halaman katalog.</p>
+              <button type="button" class="btn btn-primary" onclick="FLApp.navigate('katalog')">Kembali ke Katalog</button>
+            </div>`;
+          return;
+        }
+        const totals = getCartTotals(15000);
+        const totalQty = getCartCount();
+        const itemsHtml = cart.map((item) => {
+          const fileName = item.gambar.split("/").pop();
+          return `
+            <div class="cart-item" data-id="${escapeHtml(item.id)}">
+              <img class="cart-thumb" src="${escapeHtml(item.gambar)}" alt="${escapeHtml(item.nama)}" onerror="handleImgFallback(this, '${escapeHtml(fileName)}')">
+              <div class="cart-item-info">
+                <h3>${escapeHtml(item.nama)}</h3>
+                <div class="cart-item-meta">SKU: ${escapeHtml(item.id)} &bull; Isi: ${escapeHtml(item.satuan)}</div>
+                <div class="cart-item-unit-price">${formatRupiah(item.hargaNum)}</div>
+              </div>
+              <div class="cart-item-actions">
+                <div class="qty-control">
+                  <button type="button" class="qty-btn btn-dec" data-id="${escapeHtml(item.id)}">&minus;</button>
+                  <input type="number" class="qty-input" min="1" max="99" value="${item.qty}" data-id="${escapeHtml(item.id)}">
+                  <button type="button" class="qty-btn btn-inc" data-id="${escapeHtml(item.id)}">+</button>
+                </div>
+                <div class="cart-item-subtotal">${formatRupiah(item.hargaNum * item.qty)}</div>
+                <button type="button" class="btn btn-danger-outline btn-sm btn-remove" data-id="${escapeHtml(item.id)}">Hapus</button>
+              </div>
+            </div>`;
+        }).join("");
+
+        root.innerHTML = `
+          <div class="two-col">
+            <section class="panel">
+              <div class="panel-title">
+                <span>Daftar Item (${totalQty})</span>
+                <button type="button" class="btn btn-danger-outline btn-sm" id="btn-clear-cart">Kosongkan Keranjang</button>
+              </div>
+              <div>${itemsHtml}</div>
+            </section>
+            <aside class="panel">
+              <div class="panel-title"><span>Ringkasan Belanja</span></div>
+              <div class="summary-row"><span>Subtotal (${totalQty} item)</span><strong>${formatRupiah(totals.subtotal)}</strong></div>
+              <div class="summary-row"><span>Estimasi Ongkos Kirim</span><strong>${formatRupiah(totals.ongkir)}</strong></div>
+              <hr class="summary-divider">
+              <div class="summary-total"><span>Grand Total</span><span>${formatRupiah(totals.grandTotal)}</span></div>
+              <button type="button" class="btn btn-primary btn-block" onclick="FLApp.navigate('checkout')">Lanjut ke Checkout &rarr;</button>
+              <button type="button" class="btn btn-outline btn-block" style="margin-top:10px;" onclick="FLApp.navigate('katalog')">+ Tambah Produk Lainnya</button>
+            </aside>
+          </div>`;
+      }
+
+      function renderCheckout() {
+        const root = document.getElementById("checkout-root");
+        const cart = getCart();
+        if (cart.length === 0) {
+          root.innerHTML = `
+            <div class="panel empty-state">
+              <h3>Tidak ada item untuk di-checkout</h3>
+              <p>Keranjang belanja Anda kosong. Silakan pilih produk di katalog terlebih dahulu.</p>
+              <button type="button" class="btn btn-primary" onclick="FLApp.navigate('katalog')">Buka Katalog</button>
+            </div>`;
+          return;
+        }
+        const ongkir = shippingMethod === "pickup" ? 0 : 15000;
+        const totals = getCartTotals(ongkir);
+        const summaryItemsHtml = cart.map((item) => `
+          <div class="summary-row" style="align-items:flex-start; gap:12px;">
+            <span>${escapeHtml(item.nama)} <small style="color:var(--ink-muted);">&times;${item.qty}</small></span>
+            <strong style="white-space:nowrap;">${formatRupiah(item.hargaNum * item.qty)}</strong>
+          </div>`).join("");
+
+        root.innerHTML = `
+          <form id="checkout-form" class="two-col">
+            <section class="panel">
+              <div class="panel-title"><span>Data Penerima &amp; Pengiriman</span></div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="co-nama">Nama Lengkap *</label>
+                  <input type="text" id="co-nama" class="form-control" placeholder="Contoh: Budi Santoso" required>
+                </div>
+                <div class="form-group">
+                  <label for="co-telepon">No. WhatsApp / Telepon *</label>
+                  <input type="tel" id="co-telepon" class="form-control" placeholder="0812-xxxx-xxxx" required>
                 </div>
               </div>
-            </div>
-          </article>
-        `;
-      }).join("");
-    }
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="co-kota">Kota / Kabupaten *</label>
+                  <input type="text" id="co-kota" class="form-control" placeholder="Contoh: Jakarta Selatan" required>
+                </div>
+                <div class="form-group">
+                  <label for="co-shipping">Metode Pengiriman</label>
+                  <select id="co-shipping" class="form-control">
+                    <option value="courier" ${shippingMethod === "courier" ? "selected" : ""}>Kurir Reguler JNE/J&amp;T/SiCepat (Rp 15.000)</option>
+                    <option value="pickup" ${shippingMethod === "pickup" ? "selected" : ""}>Ambil di Gudang Kemayoran (Gratis)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="co-alamat">Alamat Lengkap *</label>
+                <textarea id="co-alamat" rows="3" class="form-control" placeholder="Nama jalan, nomor rumah, RT/RW, kode pos" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="co-catatan">Catatan Tambahan (Opsional)</label>
+                <input type="text" id="co-catatan" class="form-control" placeholder="Contoh: Packing bubble wrap tambahan">
+              </div>
+              <div class="panel-title" style="margin-top:24px;"><span>Metode Pembayaran</span></div>
+              <div class="payment-option">
+                <div>
+                  <div class="payment-option-title">QRIS (Pembayaran Instan)</div>
+                  <div class="payment-option-desc">Bayar dengan scan kode QRIS melalui e-wallet atau mobile banking. Status diverifikasi otomatis secara realtime.</div>
+                </div>
+                <span class="status-badge status-paid">Aktif</span>
+              </div>
+            </section>
+            <aside class="panel">
+              <div class="panel-title"><span>Ringkasan Pesanan</span></div>
+              ${summaryItemsHtml}
+              <hr class="summary-divider">
+              <div class="summary-row"><span>Subtotal</span><strong>${formatRupiah(totals.subtotal)}</strong></div>
+              <div class="summary-row"><span>Ongkos Kirim</span><strong id="co-ongkir">${totals.ongkir === 0 ? "Gratis" : formatRupiah(totals.ongkir)}</strong></div>
+              <hr class="summary-divider">
+              <div class="summary-total"><span>Grand Total</span><span id="co-grandtotal">${formatRupiah(totals.grandTotal)}</span></div>
+              <button type="submit" class="btn btn-primary btn-block">Buat Pesanan &amp; Bayar QRIS &rarr;</button>
+              <button type="button" class="btn btn-outline btn-block" style="margin-top:10px;" onclick="FLApp.navigate('cart')">&larr; Kembali ke Keranjang</button>
+            </aside>
+          </form>`;
 
-    initCatalog();
+        document.getElementById("co-shipping").addEventListener("change", function (e) {
+          shippingMethod = e.target.value;
+          const t = getCartTotals(shippingMethod === "pickup" ? 0 : 15000);
+          document.getElementById("co-ongkir").textContent = t.ongkir === 0 ? "Gratis" : formatRupiah(t.ongkir);
+          document.getElementById("co-grandtotal").textContent = formatRupiah(t.grandTotal);
+        });
+
+        document.getElementById("checkout-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          const customer = {
+            nama: document.getElementById("co-nama").value.trim(),
+            telepon: document.getElementById("co-telepon").value.trim(),
+            kota: document.getElementById("co-kota").value.trim(),
+            alamat: document.getElementById("co-alamat").value.trim(),
+            catatan: document.getElementById("co-catatan").value.trim()
+          };
+          const order = createOrder(customer, shippingMethod);
+          if (order) navigate("payment", order.id);
+        });
+      }
+
+      function renderPayment() {
+        const root = document.getElementById("payment-root");
+        const allOrders = getOrders();
+        const order = activeOrderId ? getOrderById(activeOrderId) : (allOrders[0] || null);
+        if (!order) {
+          root.innerHTML = `
+            <div class="panel empty-state">
+              <h3>Transaksi tidak ditemukan</h3>
+              <p>Nomor invoice tidak valid atau belum ada pesanan yang dibuat.</p>
+              <button type="button" class="btn btn-primary" onclick="FLApp.navigate('katalog')">Kembali ke Katalog</button>
+            </div>`;
+          return;
+        }
+        activeOrderId = order.id;
+        const prev = paymentPrevStatus;
+        paymentPrevStatus = order.status;
+
+        const qrisSvg = generateDummyQrisSvg(`${order.id}|${order.grandTotal}|${order.qrisRef}`);
+        let statusSection = "";
+
+        if (order.status === "PAID") {
+          statusSection = `
+            <div class="realtime-banner paid">
+              <strong>&#10003; Pembayaran Berhasil (PAID)</strong><br>
+              Ref Approval: <code>${escapeHtml(order.approvalRef || "-")}</code> &bull; Waktu Lunas: ${escapeHtml(formatWaktu(order.paidAt))}
+              ${prev === "PENDING" ? '<div style="margin-top:8px;">Mengalihkan secara otomatis dalam <strong id="redirect-sec">3</strong> detik...</div>' : ""}
+            </div>
+            <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;">
+              <button type="button" class="btn btn-primary" onclick="FLApp.navigate('thankyou', '${escapeHtml(order.id)}')">Lihat Struk Pesanan</button>
+              <button type="button" class="btn btn-outline" onclick="FLApp.navigate('history')">Lihat Riwayat Transaksi</button>
+            </div>`;
+        } else if (order.status === "REJECTED") {
+          statusSection = `
+            <div class="realtime-banner rejected">
+              <strong>&#10005; Pembayaran Ditolak / Dibatalkan</strong><br>
+              Waktu: ${escapeHtml(formatWaktu(order.rejectedAt))}
+            </div>
+            <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;">
+              <button type="button" class="btn btn-primary" onclick="FLApp.navigate('katalog')">Pesan Ulang</button>
+              <button type="button" class="btn btn-outline" onclick="FLApp.navigate('history')">Riwayat Transaksi</button>
+            </div>`;
+        } else {
+          statusSection = `
+            <div class="realtime-banner">
+              <strong>Menunggu Pembayaran</strong><br>
+              Klik tombol Simulator QRIS di bawah (atau buka di tab baru) untuk mensimulasikan pembayaran <strong>PAID</strong> secara realtime.
+            </div>
+            <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;">
+              <a href="?sim=1&order=${encodeURIComponent(order.id)}" target="_blank" class="btn btn-primary">Buka Simulator QRIS (Tab Baru)</a>
+              <button type="button" class="btn btn-approve" onclick="FLApp.approveOrder('${escapeHtml(order.id)}', 'PAID')">Simulasi Approve Langsung</button>
+              <button type="button" class="btn btn-outline" onclick="FLApp.navigate('history')">Riwayat Transaksi</button>
+            </div>`;
+        }
+
+        const itemRows = order.items.map((it) => `
+          <div class="summary-row">
+            <span>${escapeHtml(it.nama)} &times; ${it.qty}</span>
+            <strong>${formatRupiah(it.subtotal)}</strong>
+          </div>`).join("");
+
+        root.innerHTML = `
+          <section class="panel">
+            <div class="panel-title">
+              <span>Invoice: ${escapeHtml(order.id)}</span>
+              <span>${renderStatusBadge(order.status)}</span>
+            </div>
+            <div class="qris-box">
+              <div style="font-size:0.84rem; color:var(--ink-secondary);">Total Pembayaran</div>
+              <div class="qris-amount">${formatRupiah(order.grandTotal)}</div>
+              <div class="qris-frame">
+                <div class="qris-header"><span class="qris-logo">QRIS</span><span>FINGERLAB.ID</span></div>
+                ${qrisSvg}
+                <div class="qris-nmid">NMID: ID1026000849210 &bull; Ref: ${escapeHtml(order.qrisRef)}</div>
+              </div>
+              ${statusSection}
+            </div>
+            <hr class="summary-divider" style="margin:24px 0 18px;">
+            <h3 style="font-size:0.98rem; margin-bottom:12px;">Rincian Pesanan</h3>
+            ${itemRows}
+            <hr class="summary-divider">
+            <div class="summary-row"><span>Subtotal</span><strong>${formatRupiah(order.subtotal)}</strong></div>
+            <div class="summary-row"><span>Ongkos Kirim (${escapeHtml(order.shippingMethod)})</span><strong>${order.ongkir === 0 ? "Gratis" : formatRupiah(order.ongkir)}</strong></div>
+            <div class="summary-total" style="margin-bottom:0;"><span>Grand Total</span><span>${formatRupiah(order.grandTotal)}</span></div>
+          </section>`;
+
+        if (order.status === "PAID" && prev === "PENDING" && !redirectTimer) {
+          showToast("Pembayaran QRIS berhasil diverifikasi (PAID)!");
+          let sec = 3;
+          redirectTimer = setInterval(() => {
+            sec -= 1;
+            const secEl = document.getElementById("redirect-sec");
+            if (secEl) secEl.textContent = String(Math.max(0, sec));
+            if (sec <= 0) {
+              clearInterval(redirectTimer);
+              redirectTimer = null;
+              navigate("thankyou", order.id);
+            }
+          }, 1000);
+        }
+      }
+
+      function renderThankYou() {
+        const root = document.getElementById("thankyou-root");
+        const allOrders = getOrders();
+        const order = activeOrderId ? getOrderById(activeOrderId) : (allOrders[0] || null);
+        if (!order) {
+          root.innerHTML = `
+            <div class="panel empty-state">
+              <h3>Data pesanan tidak ditemukan</h3>
+              <p>Silakan lihat daftar transaksi Anda di halaman riwayat transaksi.</p>
+              <button type="button" class="btn btn-primary" onclick="FLApp.navigate('history')">Buka Riwayat Transaksi</button>
+            </div>`;
+          return;
+        }
+        activeOrderId = order.id;
+
+        const bannerHtml = order.status === "PAID"
+          ? `<div class="realtime-banner paid" style="margin-top:0; margin-bottom:20px;">
+               <strong>&#10003; Pembayaran QRIS Lunas (PAID)</strong><br>
+               Terima kasih, <strong>${escapeHtml(order.customer.nama)}</strong>! Pembayaran Anda telah diverifikasi pada ${escapeHtml(formatWaktu(order.paidAt))} (Ref: <code>${escapeHtml(order.approvalRef || "-")}</code>).
+             </div>`
+          : order.status === "REJECTED"
+          ? `<div class="realtime-banner rejected" style="margin-top:0; margin-bottom:20px;">
+               <strong>&#10005; Pembayaran Ditolak</strong><br>
+               Transaksi ini ditolak pada ${escapeHtml(formatWaktu(order.rejectedAt))}.
+             </div>`
+          : `<div class="realtime-banner" style="margin-top:0; margin-bottom:20px;">
+               <strong>Menunggu Pembayaran QRIS</strong><br>
+               Status akan berubah otomatis menjadi <strong>PAID</strong> setelah di-approve.
+               <a href="javascript:void(0)" onclick="FLApp.navigate('payment', '${escapeHtml(order.id)}')" style="text-decoration:underline; color:var(--accent-crimson); font-weight:700;">Kembali ke QRIS</a>
+             </div>`;
+
+        const rowsHtml = order.items.map((it) => `
+          <tr>
+            <td><strong>${escapeHtml(it.nama)}</strong><br><small style="color:var(--ink-muted);">${formatRupiah(it.hargaNum)} (${escapeHtml(it.satuan)})</small></td>
+            <td style="text-align:center;">${it.qty}</td>
+            <td style="text-align:right;"><strong>${formatRupiah(it.subtotal)}</strong></td>
+          </tr>`).join("");
+
+        root.innerHTML = `
+          <section class="panel">
+            <div class="panel-title">
+              <span>Struk Pesanan &bull; ${escapeHtml(order.id)}</span>
+              <span>${renderStatusBadge(order.status)}</span>
+            </div>
+            ${bannerHtml}
+            <div class="form-row" style="margin-bottom:20px; font-size:0.86rem;">
+              <div>
+                <div style="color:var(--ink-muted); font-size:0.74rem; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:4px;">Data Penerima</div>
+                <div><strong>${escapeHtml(order.customer.nama)}</strong></div>
+                <div>${escapeHtml(order.customer.telepon)}</div>
+                <div>${escapeHtml(order.customer.alamat)}, ${escapeHtml(order.customer.kota)}</div>
+                ${order.customer.catatan ? `<div style="color:var(--ink-muted); margin-top:4px;">Catatan: ${escapeHtml(order.customer.catatan)}</div>` : ""}
+              </div>
+              <div>
+                <div style="color:var(--ink-muted); font-size:0.74rem; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:4px;">Info Transaksi</div>
+                <div>Tanggal Order: ${escapeHtml(formatWaktu(order.createdAt))}</div>
+                <div>Metode Bayar: <strong>${escapeHtml(order.paymentMethod)}</strong> (${escapeHtml(order.qrisRef)})</div>
+                <div>Pengiriman: ${escapeHtml(order.shippingMethod)}</div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Produk</th><th style="text-align:center;">Qty</th><th style="text-align:right;">Subtotal</th></tr></thead>
+                <tbody>${rowsHtml}</tbody>
+              </table>
+            </div>
+            <div style="max-width:320px; margin-left:auto; margin-top:16px;">
+              <div class="summary-row"><span>Subtotal</span><strong>${formatRupiah(order.subtotal)}</strong></div>
+              <div class="summary-row"><span>Ongkos Kirim</span><strong>${order.ongkir === 0 ? "Gratis" : formatRupiah(order.ongkir)}</strong></div>
+              <hr class="summary-divider">
+              <div class="summary-total" style="margin-bottom:0;"><span>Grand Total</span><span>${formatRupiah(order.grandTotal)}</span></div>
+            </div>
+            <div class="no-print" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:24px; padding-top:18px; border-top:1px solid var(--border-subtle);">
+              <button type="button" class="btn btn-primary" onclick="FLApp.navigate('history')">Lihat Riwayat Transaksi</button>
+              <button type="button" class="btn btn-outline" onclick="FLApp.navigate('katalog')">Belanja Lagi</button>
+              <button type="button" class="btn btn-outline" onclick="window.print()">Cetak Struk</button>
+            </div>
+          </section>`;
+      }
+
+      function renderHistory() {
+        const root = document.getElementById("history-root");
+        const orders = getOrders();
+        if (orders.length === 0) {
+          root.innerHTML = `
+            <div class="panel empty-state">
+              <h3>Belum ada riwayat transaksi</h3>
+              <p>Pesanan yang Anda buat akan tampil di sini lengkap dengan status pembayaran QRIS secara realtime.</p>
+              <button type="button" class="btn btn-primary" onclick="FLApp.navigate('katalog')">Mulai Belanja</button>
+            </div>`;
+          return;
+        }
+
+        const filtered = orders.filter((o) => historyFilter === "ALL" ? true : o.status === historyFilter);
+        const countPending = orders.filter((o) => o.status === "PENDING").length;
+        const countPaid = orders.filter((o) => o.status === "PAID").length;
+        const countRejected = orders.filter((o) => o.status === "REJECTED").length;
+
+        const rowsHtml = filtered.length === 0
+          ? '<tr><td colspan="6" style="text-align:center; padding:32px; color:var(--ink-muted);">Tidak ada transaksi dengan filter ini.</td></tr>'
+          : filtered.map((o) => {
+              const itemsText = o.items.map((it) => `${escapeHtml(it.nama)} &times;${it.qty}`).join(", ");
+              const actionHtml = o.status === "PENDING"
+                ? `<button type="button" class="btn btn-primary btn-sm" onclick="FLApp.navigate('payment', '${escapeHtml(o.id)}')">Bayar QRIS</button>`
+                : `<button type="button" class="btn btn-outline btn-sm" onclick="FLApp.navigate('thankyou', '${escapeHtml(o.id)}')">Lihat Struk</button> <button type="button" class="btn btn-outline btn-sm" onclick="FLApp.navigate('payment', '${escapeHtml(o.id)}')">Status</button>`;
+
+              return `
+                <tr>
+                  <td><strong>${escapeHtml(o.id)}</strong><br><small style="color:var(--ink-muted);">${escapeHtml(formatWaktu(o.createdAt))}</small></td>
+                  <td><div><strong>${escapeHtml(o.customer.nama)}</strong></div><small style="color:var(--ink-muted);">${escapeHtml(o.customer.kota)}</small></td>
+                  <td style="max-width:260px;">${itemsText}</td>
+                  <td><div style="font-size:0.76rem; color:var(--ink-muted);">Sub: ${formatRupiah(o.subtotal)}</div><strong>${formatRupiah(o.grandTotal)}</strong></td>
+                  <td>${renderStatusBadge(o.status)}${o.paidAt ? `<div style="font-size:0.72rem; color:var(--ink-muted); margin-top:4px;">${escapeHtml(formatWaktu(o.paidAt))}</div>` : ""}</td>
+                  <td style="white-space:nowrap;">${actionHtml}</td>
+                </tr>`;
+            }).join("");
+
+        root.innerHTML = `
+          <section class="panel">
+            <div class="panel-title">
+              <span>Daftar Transaksi</span>
+              <button type="button" class="btn btn-outline btn-sm" onclick="FLApp.navigate('katalog')">Kembali ke Katalog</button>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px;">
+              <button type="button" class="btn btn-sm ${historyFilter === "ALL" ? "btn-primary" : "btn-outline"}" data-filter="ALL">Semua (${orders.length})</button>
+              <button type="button" class="btn btn-sm ${historyFilter === "PENDING" ? "btn-primary" : "btn-outline"}" data-filter="PENDING">Menunggu (${countPending})</button>
+              <button type="button" class="btn btn-sm ${historyFilter === "PAID" ? "btn-primary" : "btn-outline"}" data-filter="PAID">Paid (${countPaid})</button>
+              <button type="button" class="btn btn-sm ${historyFilter === "REJECTED" ? "btn-primary" : "btn-outline"}" data-filter="REJECTED">Ditolak (${countRejected})</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Invoice</th><th>Penerima</th><th>Item</th><th>Total</th><th>Status</th><th>Aksi</th></tr></thead>
+                <tbody>${rowsHtml}</tbody>
+              </table>
+            </div>
+          </section>`;
+      }
+
+      function renderSimulator() {
+        const root = document.getElementById("simulator-root");
+        const orders = getOrders();
+        const pending = orders.filter((o) => o.status === "PENDING");
+        const processed = orders.filter((o) => o.status !== "PENDING");
+
+        if (activeOrderId) {
+          pending.sort((a, b) => (a.id === activeOrderId ? -1 : b.id === activeOrderId ? 1 : 0));
+        }
+
+        const pendingHtml = pending.length === 0
+          ? '<div class="panel empty-state"><p style="margin-bottom:0;">Tidak ada pembayaran QRIS yang menunggu approval.</p></div>'
+          : '<div class="sim-list">' + pending.map((o) => {
+              const isFocus = activeOrderId && o.id === activeOrderId;
+              return `
+                <div class="tx-card ${isFocus ? "highlight" : ""}">
+                  <div>
+                    <div style="font-family:monospace; font-weight:800;">${escapeHtml(o.id)}${isFocus ? " &bull; TARGET" : ""}</div>
+                    <div style="font-size:0.8rem; color:var(--ink-secondary);">${escapeHtml(o.customer.nama)} &bull; ${escapeHtml(o.qrisRef)} &bull; ${escapeHtml(formatWaktu(o.createdAt))}</div>
+                    <div style="font-size:1rem; font-weight:800; margin-top:4px;">${formatRupiah(o.grandTotal)}</div>
+                  </div>
+                  <div style="display:flex; gap:8px;">
+                    <button type="button" class="btn btn-approve btn-sm" onclick="FLApp.approveOrder('${escapeHtml(o.id)}', 'PAID')">Approve</button>
+                    <button type="button" class="btn btn-danger-outline btn-sm" onclick="FLApp.approveOrder('${escapeHtml(o.id)}', 'REJECTED')">Reject</button>
+                  </div>
+                </div>`;
+            }).join("") + '</div>';
+
+        const processedHtml = processed.length === 0
+          ? '<div class="panel empty-state"><p style="margin-bottom:0;">Belum ada transaksi yang diproses.</p></div>'
+          : '<div class="sim-list">' + processed.slice(0, 10).map((o) => `
+              <div class="tx-card">
+                <div>
+                  <div style="font-family:monospace; font-weight:700;">${escapeHtml(o.id)}</div>
+                  <div style="font-size:0.8rem; color:var(--ink-secondary);">${escapeHtml(o.customer.nama)} &bull; ${formatRupiah(o.grandTotal)}</div>
+                </div>
+                <div>${renderStatusBadge(o.status)}</div>
+              </div>`).join("") + '</div>';
+
+        root.innerHTML = `
+          <div class="sim-section-label">Menunggu Approval (${pending.length})</div>
+          ${pendingHtml}
+          <div class="sim-section-label">Baru Diproses (${processed.length})</div>
+          ${processedHtml}`;
+      }
+
+      function renderCurrentView() {
+        updateNavBadge();
+        if (currentView === "katalog") renderCatalog();
+        else if (currentView === "cart") renderCart();
+        else if (currentView === "checkout") renderCheckout();
+        else if (currentView === "payment") renderPayment();
+        else if (currentView === "thankyou") renderThankYou();
+        else if (currentView === "history") renderHistory();
+        else if (currentView === "simulator") renderSimulator();
+      }
+
+      // Event Delegation
+      document.getElementById("product-grid").addEventListener("click", function (e) {
+        const btn = e.target.closest(".btn-add-cart");
+        if (!btn) return;
+        const sku = btn.getAttribute("data-id");
+        const item = getProductById(sku);
+        if (!item) return;
+        addToCart(sku, 1);
+        showToast(item.name + " ditambahkan ke keranjang");
+        renderCatalog();
+      });
+
+      document.getElementById("cart-root").addEventListener("click", function (e) {
+        const decBtn = e.target.closest(".btn-dec");
+        if (decBtn) {
+          const id = decBtn.getAttribute("data-id");
+          const item = getCart().find((c) => c.id === id);
+          if (item) {
+            if (item.qty <= 1) { removeFromCart(id); showToast(item.nama + " dihapus dari keranjang"); }
+            else { updateCartQty(id, item.qty - 1); }
+            renderCart();
+          }
+          return;
+        }
+        const incBtn = e.target.closest(".btn-inc");
+        if (incBtn) {
+          const id = incBtn.getAttribute("data-id");
+          const item = getCart().find((c) => c.id === id);
+          if (item) { updateCartQty(id, item.qty + 1); renderCart(); }
+          return;
+        }
+        const removeBtn = e.target.closest(".btn-remove");
+        if (removeBtn) {
+          const id = removeBtn.getAttribute("data-id");
+          const item = getCart().find((c) => c.id === id);
+          removeFromCart(id);
+          if (item) showToast(item.nama + " dihapus dari keranjang");
+          renderCart();
+          return;
+        }
+        if (e.target.id === "btn-clear-cart") {
+          clearCart();
+          showToast("Keranjang dikosongkan");
+          renderCart();
+        }
+      });
+
+      document.getElementById("cart-root").addEventListener("change", function (e) {
+        const input = e.target.closest(".qty-input");
+        if (!input) return;
+        const id = input.getAttribute("data-id");
+        const val = parseInt(input.value, 10);
+        updateCartQty(id, isNaN(val) || val < 1 ? 1 : val);
+        renderCart();
+      });
+
+      document.getElementById("history-root").addEventListener("click", function (e) {
+        const btn = e.target.closest("[data-filter]");
+        if (!btn) return;
+        historyFilter = btn.getAttribute("data-filter");
+        renderHistory();
+      });
+
+      // Realtime Sync across tabs
+      window.addEventListener("storage", function (e) {
+        if (e.key === ORDERS_KEY || e.key === CART_KEY) {
+          renderCurrentView();
+        }
+      });
+      if (channel) {
+        channel.addEventListener("message", function () {
+          renderCurrentView();
+        });
+      }
+
+      window.FLApp = {
+        navigate: navigate,
+        approveOrder: function (orderId, status) {
+          updateOrderStatus(orderId, status);
+          const logEl = document.getElementById("simulator-log");
+          if (logEl) logEl.textContent = `Terkirim realtime: ${orderId} -> ${status} (${formatWaktu(new Date().toISOString())})`;
+          showToast(`Transaksi ${orderId} diubah ke ${status}`);
+          renderCurrentView();
+        }
+      };
+
+      // Init
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("sim") === "1") {
+        navigate("simulator", urlParams.get("order") || null);
+      } else {
+        navigate("katalog");
+      }
+    })();
   </script>
 </body>
 </html>
